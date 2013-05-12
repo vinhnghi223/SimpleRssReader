@@ -38,13 +38,6 @@ public class RssService extends IntentService {
 		} catch (IOException e) {
 			Log.w(e.getMessage(), e);
 		}
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
 		Bundle bundle = new Bundle();
 		bundle.putSerializable(ITEMS, (Serializable) rssItems);
 		ResultReceiver receiver = intent.getParcelableExtra(RECEIVER);
