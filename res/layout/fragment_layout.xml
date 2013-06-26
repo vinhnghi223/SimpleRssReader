@@ -5,7 +5,6 @@
     android:orientation="vertical" >
     
       <ListView
-        android:visibility="gone"
         android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >

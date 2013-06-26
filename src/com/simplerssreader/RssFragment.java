@@ -61,6 +61,7 @@ public class RssFragment extends Fragment implements OnItemClickListener {
 		@SuppressWarnings("unchecked")
 		@Override
 		protected void onReceiveResult(int resultCode, Bundle resultData) {
+			progressBar.setVisibility(View.GONE);
 			List<RssItem> items = (List<RssItem>) resultData.getSerializable(RssService.ITEMS);
 			if (items != null) {
 				RssAdapter adapter = new RssAdapter(getActivity(), items);
@@ -69,8 +70,6 @@ public class RssFragment extends Fragment implements OnItemClickListener {
 				Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
 						Toast.LENGTH_LONG).show();
 			}
-			progressBar.setVisibility(View.GONE);
-			listView.setVisibility(View.VISIBLE);
 		};
 	};
 

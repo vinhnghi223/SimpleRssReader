@@ -15,7 +15,6 @@ public class MainActivity extends FragmentActivity {
 		if (savedInstanceState == null) {
 			addRssFragment();
 		}
-
 	}
 
 	private void addRssFragment() {
@@ -31,5 +30,4 @@ public class MainActivity extends FragmentActivity {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean("fragment_added", true);
 	}
-
 }
