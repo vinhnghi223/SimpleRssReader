@@ -51,5 +51,4 @@ public class RssAdapter extends BaseAdapter {
 	static class ViewHolder {
 		TextView itemTitle;
 	}
-
 }

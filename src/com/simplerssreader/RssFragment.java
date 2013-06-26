@@ -33,24 +33,30 @@ public class RssFragment extends Fragment implements OnItemClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (view == null) {
 			view = inflater.inflate(R.layout.fragment_layout, container, false);
-
 			progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 			listView = (ListView) view.findViewById(R.id.listView);
 			listView.setOnItemClickListener(this);
-
-			Intent intent = new Intent(getActivity(), RssService.class);
-			intent.putExtra(RssService.RECEIVER, resultReceiver);
-			getActivity().startService(intent);
+			startService();
 		} else {
+			// If we are returning from a configuration change:
 			// "view" is still attached to the previous view hierarchy
-			// we need to remove it and re-attach it to the current one
+			// so we need to remove it and re-attach it to the current one
 			ViewGroup parent = (ViewGroup) view.getParent();
 			parent.removeView(view);
 		}
-
 		return view;
 	}
 
+	private void startService() {
+		Intent intent = new Intent(getActivity(), RssService.class);
+		intent.putExtra(RssService.RECEIVER, resultReceiver);
+		getActivity().startService(intent);
+	}
+
+	/**
+	 * Once the {@link RssService} finishes its task, the result is sent to this
+	 * ResultReceiver.
+	 */
 	private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) {
 		@SuppressWarnings("unchecked")
 		@Override
@@ -76,5 +82,4 @@ public class RssFragment extends Fragment implements OnItemClickListener {
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 		startActivity(intent);
 	}
-
 }

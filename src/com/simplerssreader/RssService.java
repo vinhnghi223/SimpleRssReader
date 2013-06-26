@@ -16,10 +16,9 @@ import android.util.Log;
 
 public class RssService extends IntentService {
 
-	protected static final String ITEMS = "items";
+	private static final String RSS_LINK = "http://www.pcworld.com/index.rss";
+	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
-	public static final int SUCCESS = 1;
-	public static final int ERROR = 0;
 
 	public RssService() {
 		super("RssService");
@@ -31,9 +30,8 @@ public class RssService extends IntentService {
 		List<RssItem> rssItems = null;
 		try {
 			PcWorldRssParser parser = new PcWorldRssParser();
-			rssItems = parser.parse(getInputStream("http://www.pcworld.com/index.rss"));
+			rssItems = parser.parse(getInputStream(RSS_LINK));
 		} catch (XmlPullParserException e) {
-			e.printStackTrace();
 			Log.w(e.getMessage(), e);
 		} catch (IOException e) {
 			Log.w(e.getMessage(), e);
